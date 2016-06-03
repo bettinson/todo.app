@@ -10,6 +10,15 @@ import UIKit
 
 class TodosViewController : UITableViewController {
     var todoStore = TodoStore()
+
+    @IBAction func addTodo(sender: AnyObject) {
+        let newTodo = todoStore.createTodo()
+        if let index = todoStore.allTodos.indexOf(newTodo) {
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

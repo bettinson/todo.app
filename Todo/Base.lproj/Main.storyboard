@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Todos-->
         <scene sceneID="YCO-vm-83g">
             <objects>
                 <tableViewController id="jhs-qK-I5M" customClass="TodosViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwi-k6-6jz">
-                                            <rect key="frame" x="47" y="11" width="399" height="21"/>
+                                            <rect key="frame" x="8" y="11" width="399" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -39,7 +39,13 @@
                             <outlet property="delegate" destination="jhs-qK-I5M" id="ttH-Si-SQ0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="b7r-Xp-iZT"/>
+                    <navigationItem key="navigationItem" title="Todos" id="b7r-Xp-iZT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="FaR-cg-bRh">
+                            <connections>
+                                <segue destination="eKR-4N-bHk" kind="presentation" id="kbh-fI-eaM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="view" destination="teP-09-nXl" id="qP0-KC-KPj"/>
                     </connections>
@@ -47,6 +53,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1IL-VR-EdN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="790" y="168"/>
+        </scene>
+        <!--Add Todo View Controller-->
+        <scene sceneID="Ia6-bc-oM7">
+            <objects>
+                <viewController id="ki0-nY-3hi" customClass="AddTodoViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hcv-5L-gDP"/>
+                        <viewControllerLayoutGuide type="bottom" id="TOb-sB-kIt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mAk-mb-KPe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3QR-op-VJj">
+                                <rect key="frame" x="25" y="99" width="550" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ki0-nY-3hi" id="yYw-o3-SMB"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3QR-op-VJj" secondAttribute="trailing" constant="25" id="61Z-XF-LDC"/>
+                            <constraint firstItem="3QR-op-VJj" firstAttribute="top" secondItem="mAk-mb-KPe" secondAttribute="top" constant="100" id="79L-ag-2nF"/>
+                            <constraint firstItem="3QR-op-VJj" firstAttribute="leading" secondItem="mAk-mb-KPe" secondAttribute="leading" constant="25" id="FKj-l8-0fa"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="AvH-aU-0ja">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7u0-vB-uC8"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="done" id="Nft-3d-ia0">
+                            <connections>
+                                <action selector="done:" destination="ki0-nY-3hi" id="Ke8-0M-uQF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="3QR-op-VJj" id="x9N-b8-eDz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pmw-Vu-TWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2356" y="168"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rxl-bc-Bug">
@@ -63,6 +113,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="90J-07-1JR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-30" y="168"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3mZ-wl-rPf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eKR-4N-bHk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CZY-o0-OOG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ki0-nY-3hi" kind="relationship" relationship="rootViewController" id="s7u-Jh-rx9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IlV-LJ-RKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1544" y="168"/>
         </scene>
     </scenes>
 </document>

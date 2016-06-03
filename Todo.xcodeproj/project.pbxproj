@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB2CF6461D01F5E800941F6E /* AddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2CF6451D01F5E800941F6E /* AddTodoViewController.swift */; };
 		BB9789E81D01B9B20048F093 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9789E71D01B9B20048F093 /* AppDelegate.swift */; };
 		BB9789ED1D01B9B20048F093 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB9789EB1D01B9B20048F093 /* Main.storyboard */; };
 		BB9789EF1D01B9B20048F093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9789EE1D01B9B20048F093 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB2CF6451D01F5E800941F6E /* AddTodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTodoViewController.swift; sourceTree = "<group>"; };
 		BB9789E41D01B9B20048F093 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB9789E71D01B9B20048F093 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB9789EC1D01B9B20048F093 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				BB9789FB1D01BB470048F093 /* Todo.swift */,
 				BB9789FD1D01BC7F0048F093 /* TodoStore.swift */,
 				BB9789F91D01BA910048F093 /* TodosViewController.swift */,
+				BB2CF6451D01F5E800941F6E /* AddTodoViewController.swift */,
 				BB9789FF1D01C8B40048F093 /* TodoCell.swift */,
 				BB9789EB1D01B9B20048F093 /* Main.storyboard */,
 				BB9789EE1D01B9B20048F093 /* Assets.xcassets */,
@@ -148,6 +151,7 @@
 				BB9789FE1D01BC7F0048F093 /* TodoStore.swift in Sources */,
 				BB9789FC1D01BB470048F093 /* Todo.swift in Sources */,
 				BB978A001D01C8B40048F093 /* TodoCell.swift in Sources */,
+				BB2CF6461D01F5E800941F6E /* AddTodoViewController.swift in Sources */,
 				BB9789E81D01B9B20048F093 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +302,7 @@
 				BB9789F81D01B9B20048F093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
