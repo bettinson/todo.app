@@ -42,7 +42,7 @@
                     <navigationItem key="navigationItem" title="Todos" id="b7r-Xp-iZT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="FaR-cg-bRh">
                             <connections>
-                                <segue destination="eKR-4N-bHk" kind="presentation" id="kbh-fI-eaM"/>
+                                <segue destination="eKR-4N-bHk" kind="presentation" identifier="AddTodo" id="kbh-fI-eaM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -54,7 +54,7 @@
             </objects>
             <point key="canvasLocation" x="790" y="168"/>
         </scene>
-        <!--Add Todo View Controller-->
+        <!--New Todo-->
         <scene sceneID="Ia6-bc-oM7">
             <objects>
                 <viewController id="ki0-nY-3hi" customClass="AddTodoViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
@@ -66,10 +66,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3QR-op-VJj">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3QR-op-VJj">
                                 <rect key="frame" x="25" y="99" width="550" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="ki0-nY-3hi" id="yYw-o3-SMB"/>
                                 </connections>
@@ -82,7 +82,7 @@
                             <constraint firstItem="3QR-op-VJj" firstAttribute="leading" secondItem="mAk-mb-KPe" secondAttribute="leading" constant="25" id="FKj-l8-0fa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="AvH-aU-0ja">
+                    <navigationItem key="navigationItem" title="New Todo" id="AvH-aU-0ja">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7u0-vB-uC8"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="done" id="Nft-3d-ia0">
                             <connections>

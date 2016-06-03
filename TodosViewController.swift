@@ -19,6 +19,11 @@ class TodosViewController : UITableViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,6 +31,16 @@ class TodosViewController : UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoStore.allTodos.count
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "AddTodo" {
+            let nav = segue.destinationViewController as! UINavigationController
+            let addTodoViewController = nav.topViewController as! AddTodoViewController
+//            self.showViewController(addTodoViewController, sender: self)
+            addTodoViewController.todoStore = todoStore
+        }
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TodoCell", forIndexPath: indexPath) as! TodoCell
         cell.updateLabels()

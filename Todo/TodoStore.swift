@@ -42,6 +42,10 @@ class TodoStore {
         return newTodo
     }
     
+    func addTodo (todo: Todo) {
+        allTodos.append(todo)
+    }
+    
     func removeTodo(todo: Todo) {
         if let index = allTodos.indexOf(todo) {
             allTodos.removeAtIndex(index)

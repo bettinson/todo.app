@@ -9,10 +9,11 @@
 import UIKit
 
 class AddTodoViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
-    @IBOutlet weak var nameTextField: UITextField!
+    var todoStore : TodoStore!
     
+    @IBOutlet weak var nameTextField: UITextField!
     @IBAction func done(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: {})
+        finishAdding()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -25,5 +26,16 @@ class AddTodoViewController: UIViewController, UITextFieldDelegate, UINavigation
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         nameTextField.isFirstResponder()
+    }
+   
+    func finishAdding() {
+        let todo = Todo(name: nameTextField.text!)
+        todoStore.addTodo(todo)
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        finishAdding()
+        return true
     }
 }
