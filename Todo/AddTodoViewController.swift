@@ -16,21 +16,30 @@ class AddTodoViewController: UIViewController, UITextFieldDelegate, UINavigation
         finishAdding()
     }
     
+    @IBAction func cancel(sender: AnyObject) {
+        nameTextField.resignFirstResponder()
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        nameTextField.isFirstResponder()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        nameTextField.isFirstResponder()
+        nameTextField.becomeFirstResponder()
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        textField.resignFirstResponder()
     }
    
     func finishAdding() {
         let todo = Todo(name: nameTextField.text!)
         todoStore.addTodo(todo)
+        nameTextField.resignFirstResponder()
         self.dismissViewControllerAnimated(true, completion: {})
     }
     

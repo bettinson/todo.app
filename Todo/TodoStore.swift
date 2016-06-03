@@ -36,12 +36,6 @@ class TodoStore {
         allTodos.insert(movedTodo, atIndex: toIndex)
     }
     
-    func createTodo () -> Todo {
-        let newTodo = Todo(name: "Todo")
-        allTodos.append(newTodo)
-        return newTodo
-    }
-    
     func addTodo (todo: Todo) {
         allTodos.append(todo)
     }

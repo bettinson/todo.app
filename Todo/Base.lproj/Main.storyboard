@@ -69,9 +69,9 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3QR-op-VJj">
                                 <rect key="frame" x="25" y="99" width="550" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="yes" returnKeyType="done"/>
                                 <connections>
-                                    <outlet property="delegate" destination="ki0-nY-3hi" id="yYw-o3-SMB"/>
+                                    <outlet property="delegate" destination="ki0-nY-3hi" id="3gk-nx-zcf"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -83,7 +83,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Todo" id="AvH-aU-0ja">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7u0-vB-uC8"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7u0-vB-uC8">
+                            <connections>
+                                <action selector="cancel:" destination="ki0-nY-3hi" id="4Lc-Ma-ML6"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="done" id="Nft-3d-ia0">
                             <connections>
                                 <action selector="done:" destination="ki0-nY-3hi" id="Ke8-0M-uQF"/>
