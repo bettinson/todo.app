@@ -21,8 +21,6 @@ class TodoStore {
         if let archivedItems = NSKeyedUnarchiver.unarchiveObjectWithFile(todoArchiveURL.path!) as? [Todo] {
             allTodos += archivedItems
         }
-        let tempTodo = Todo(name: "Test")
-        allTodos.append(tempTodo)
     }
     
     func moveTodoAtIndex(fromIndex: Int, toIndex: Int) {
@@ -41,6 +39,7 @@ class TodoStore {
     }
     
     func removeTodo(todo: Todo) {
+        print ("removing item")
         if let index = allTodos.indexOf(todo) {
             allTodos.removeAtIndex(index)
         }

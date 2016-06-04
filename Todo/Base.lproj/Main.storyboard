@@ -21,16 +21,24 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwi-k6-6jz">
-                                            <rect key="frame" x="8" y="11" width="399" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="f4R-kz-5RI">
+                                            <rect key="frame" x="25" y="0.0" width="575" height="43.5"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" allowsDirectInteraction="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                        </textField>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="f4R-kz-5RI" firstAttribute="top" secondItem="aww-uE-Nsr" secondAttribute="top" id="Alg-Jm-KLv"/>
+                                        <constraint firstItem="f4R-kz-5RI" firstAttribute="leading" secondItem="aww-uE-Nsr" secondAttribute="leading" constant="25" id="UhW-eg-lX4"/>
+                                        <constraint firstAttribute="trailing" secondItem="f4R-kz-5RI" secondAttribute="trailing" id="hXX-ht-YNT"/>
+                                        <constraint firstAttribute="bottom" secondItem="f4R-kz-5RI" secondAttribute="bottom" id="hzA-7v-9HH"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="nameLabel" destination="fwi-k6-6jz" id="dYL-Mx-ptG"/>
+                                    <outlet property="nameField" destination="f4R-kz-5RI" id="hNa-C7-Kc1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -52,7 +60,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1IL-VR-EdN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="790" y="168"/>
+            <point key="canvasLocation" x="796" y="168"/>
         </scene>
         <!--New Todo-->
         <scene sceneID="Ia6-bc-oM7">
