@@ -34,7 +34,6 @@ class TodoCell: UITableViewCell, UITextFieldDelegate {
     }
     
     override func becomeFirstResponder() -> Bool {
-        print("Cell became first responder")
         nameField.userInteractionEnabled = true
         nameField.delegate = self
         nameField.becomeFirstResponder()
@@ -42,25 +41,20 @@ class TodoCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        print("Text field should return")
         print (currentTodo.name)
         textField.resignFirstResponder()
         return true
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        print ("OH SHIT did end")
         return true
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        print ("Oh shit did begin editing")
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        print ("ok")
         textField.resignFirstResponder()
-        print ("Did end Editing")
         todoDelegate?.didFinishEditing(self.todoDelegate!,cell: self)
 //        currentTodo = nil
     }

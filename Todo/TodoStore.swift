@@ -34,6 +34,10 @@ class TodoStore {
         allTodos.insert(movedTodo, atIndex: toIndex)
     }
     
+    func changeTodo (todo: Todo, index: Int) {
+        allTodos[index] = todo
+    }
+    
     func addTodo (todo: Todo) {
         allTodos.append(todo)
     }

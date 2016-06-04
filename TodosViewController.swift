@@ -43,7 +43,9 @@ class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCell
     }
    
     func didFinishEditing(sender: TodoCellDelegate, cell: TodoCell) {
-        
+        let newTodo = Todo(name: cell.nameField.text!)
+        todoStore.changeTodo(newTodo, index: currentIndex!)
+        tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
