@@ -8,11 +8,14 @@
 
 import UIKit
 
-class TodosViewController : UITableViewController, UITextFieldDelegate {
+
+
+class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCellDelegate {
+    
     var todoStore = TodoStore()
-    private var currentTodo : Todo? = nil {
-        didSet { print("Oh shit, we changed the todo") }
-    }
+    
+    private var currentTodo : Todo?
+    private var currentIndex : Int?
     
     
     override func viewWillAppear(animated: Bool) {
@@ -22,6 +25,7 @@ class TodosViewController : UITableViewController, UITextFieldDelegate {
 
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
     }
     
@@ -38,6 +42,9 @@ class TodosViewController : UITableViewController, UITextFieldDelegate {
         }
     }
    
+    func didFinishEditing(sender: TodoCellDelegate, cell: TodoCell) {
+        
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TodoCell", forIndexPath: indexPath) as! TodoCell
@@ -49,26 +56,19 @@ class TodosViewController : UITableViewController, UITextFieldDelegate {
 //        cell.addGestureRecognizer(tapRecognizer)
         cell.userInteractionEnabled = true
         cell.nameField.text = todo.name
-        cell.nameField.delegate = self
+        cell.todoDelegate = self
         cell.nameField.userInteractionEnabled = false
-        
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TodoCell", forIndexPath: indexPath) as! TodoCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TodoCell
         let todo = todoStore.allTodos[indexPath.row]
-        
+        currentTodo = todo
         cell.nameField.text = todo.name
         cell.nameField.userInteractionEnabled = true
         cell.currentTodo = todo
+        currentIndex = indexPath.row
         cell.becomeFirstResponder()
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        print("Text field should return")
-        print ("\(currentTodo!.name) but in the view!")
-        textField.resignFirstResponder()
-        return true
     }
 }

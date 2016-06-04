@@ -8,8 +8,16 @@
 
 import UIKit
 
+protocol TodoCellDelegate: class {
+    func didFinishEditing(sender: TodoCellDelegate, cell: TodoCell)
+}
+
 class TodoCell: UITableViewCell, UITextFieldDelegate {
+    
     var currentTodo : Todo!
+    weak var todoDelegate:TodoCellDelegate?
+    weak var delegate:UITextFieldDelegate?
+    
     
 //    @IBAction func tappedNameField(sender: AnyObject) {
 //        print("Tapped text field")
@@ -20,14 +28,13 @@ class TodoCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var nameField: UITextField!
     
-    
     func updateLabels() {
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         nameField.font = bodyFont
     }
     
     override func becomeFirstResponder() -> Bool {
-        print ("ok")
+        print("Cell became first responder")
         nameField.userInteractionEnabled = true
         nameField.delegate = self
         nameField.becomeFirstResponder()
@@ -51,8 +58,10 @@ class TodoCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
+        print ("ok")
         textField.resignFirstResponder()
         print ("Did end Editing")
+        todoDelegate?.didFinishEditing(self.todoDelegate!,cell: self)
 //        currentTodo = nil
     }
     
