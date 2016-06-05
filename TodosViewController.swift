@@ -10,13 +10,35 @@ import UIKit
 
 
 
+
 class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCellDelegate {
-    
+    @IBOutlet weak var clearTodosButton: UIBarButtonItem!
+
     var todoStore = TodoStore()
     
     private var currentTodo : Todo?
     private var currentIndex : Int?
     
+    @IBAction func clearTodos(sender: AnyObject) {
+//        tableView.beginUpdates()
+        print(todoStore.allTodos.count)
+        let count = todoStore.allTodos.count-1
+       
+        var indexPaths : [NSIndexPath]
+        indexPaths = []
+        
+        for i in 0...todoStore.allTodos.count-1 {
+            let indexPath = NSIndexPath(forRow: i, inSection: 0)
+            indexPaths.append(indexPath)
+        }
+        
+        todoStore.allTodos = []
+        
+        self.tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Left)
+        tableView.reloadData()
+        
+    }
+    private var isEditing = false
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -30,6 +52,11 @@ class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCell
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if todoStore.allTodos.count == 0 {
+            clearTodosButton.enabled = false
+        } else {
+            clearTodosButton.enabled = true
+        }
         return todoStore.allTodos.count
     }
     
@@ -45,7 +72,26 @@ class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCell
     func didFinishEditing(sender: TodoCellDelegate, cell: TodoCell) {
         let newTodo = Todo(name: cell.nameField.text!)
         todoStore.changeTodo(newTodo, index: currentIndex!)
+        isEditing = false
+        clearTodosButton.enabled = true
         tableView.reloadData()
+    }
+    
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let todo = todoStore.allTodos[indexPath.row]
+        
+        let done = UITableViewRowAction(style: .Destructive, title: "Done",  handler: { (action, indexPath) in
+            self.tableView.beginUpdates()
+            self.todoStore.removeTodo(todo)
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            self.tableView.endUpdates()
+            //Delete item
+        })
+        
+        
+        done.backgroundColor = UIColor(colorLiteralRed: 23.0/255, green: 190.0/255, blue: 52.0/255, alpha: 1)
+        return [done]
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -64,13 +110,17 @@ class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TodoCell
-        let todo = todoStore.allTodos[indexPath.row]
-        currentTodo = todo
-        cell.nameField.text = todo.name
-        cell.nameField.userInteractionEnabled = true
-        cell.currentTodo = todo
-        currentIndex = indexPath.row
-        cell.becomeFirstResponder()
+        if isEditing == false {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! TodoCell
+            let todo = todoStore.allTodos[indexPath.row]
+            currentTodo = todo
+            cell.nameField.text = todo.name
+            cell.nameField.userInteractionEnabled = true
+            cell.currentTodo = todo
+            currentIndex = indexPath.row
+            isEditing = true
+            clearTodosButton.enabled = false
+            cell.becomeFirstResponder()
+        }
     }
 }
