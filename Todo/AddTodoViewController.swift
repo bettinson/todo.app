@@ -28,6 +28,8 @@ class AddTodoViewController: UIViewController, UITextFieldDelegate, UINavigation
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem?.tintColor = Colours.greenColour
+        navigationItem.rightBarButtonItem?.tintColor = Colours.greenColour
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         nameTextField.becomeFirstResponder()
     }
@@ -37,10 +39,22 @@ class AddTodoViewController: UIViewController, UITextFieldDelegate, UINavigation
     }
    
     func finishAdding() {
-        let todo = Todo(name: nameTextField.text!)
-        todoStore.addTodo(todo)
-        nameTextField.resignFirstResponder()
-        self.dismissViewControllerAnimated(true, completion: {})
+        if (nameTextField.text) == "" {
+            let title = "You can't have a blank todo"
+            let message = "Please add some text."
+            
+            let ac = UIAlertController(title: title,
+                                       message: message,
+                                       preferredStyle: .Alert)
+            let okayAction = UIAlertAction(title: "Okay", style: .Cancel, handler: nil)
+            ac.addAction(okayAction)
+            presentViewController(ac, animated: true, completion: nil)
+        } else {
+            let todo = Todo(name: nameTextField.text!)
+            todoStore.addTodo(todo)
+            nameTextField.resignFirstResponder()
+            self.dismissViewControllerAnimated(true, completion: {})
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

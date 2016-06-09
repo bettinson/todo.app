@@ -9,20 +9,20 @@
         <scene sceneID="YCO-vm-83g">
             <objects>
                 <tableViewController id="jhs-qK-I5M" customClass="TodosViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="teP-09-nXl">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" id="teP-09-nXl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TodoCell" rowHeight="44" id="IqK-rJ-Y2l" customClass="TodoCell" customModule="Todo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TodoCell" rowHeight="45" id="IqK-rJ-Y2l" customClass="TodoCell" customModule="Todo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IqK-rJ-Y2l" id="aww-uE-Nsr">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="f4R-kz-5RI">
-                                            <rect key="frame" x="25" y="0.0" width="575" height="43.5"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="f4R-kz-5RI">
+                                            <rect key="frame" x="0.0" y="-1" width="575" height="62.5"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" allowsDirectInteraction="YES"/>
                                             </accessibility>
@@ -48,11 +48,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Todos" id="b7r-Xp-iZT">
-                        <barButtonItem key="leftBarButtonItem" title="Clear" style="plain" id="LGQ-7M-9wD">
-                            <connections>
-                                <action selector="clearTodos:" destination="jhs-qK-I5M" id="Zlw-Ht-P10"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="FaR-cg-bRh">
                             <connections>
                                 <segue destination="eKR-4N-bHk" kind="presentation" identifier="AddTodo" id="kbh-fI-eaM"/>
@@ -60,7 +55,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="clearTodosButton" destination="LGQ-7M-9wD" id="nCt-0e-tzw"/>
                         <outlet property="view" destination="teP-09-nXl" id="qP0-KC-KPj"/>
                     </connections>
                 </tableViewController>

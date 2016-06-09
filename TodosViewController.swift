@@ -12,51 +12,33 @@ import UIKit
 
 
 class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCellDelegate {
-    @IBOutlet weak var clearTodosButton: UIBarButtonItem!
 
     var todoStore = TodoStore()
     
     private var currentTodo : Todo?
     private var currentIndex : Int?
     
-    @IBAction func clearTodos(sender: AnyObject) {
-//        tableView.beginUpdates()
-        print(todoStore.allTodos.count)
-        let count = todoStore.allTodos.count-1
-       
-        var indexPaths : [NSIndexPath]
-        indexPaths = []
-        
-        for i in 0...todoStore.allTodos.count-1 {
-            let indexPath = NSIndexPath(forRow: i, inSection: 0)
-            indexPaths.append(indexPath)
-        }
-        
-        todoStore.allTodos = []
-        
-        self.tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Left)
-        tableView.reloadData()
-        
-    }
+
     private var isEditing = false
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        navigationItem.leftBarButtonItem = editButtonItem()
+    }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem?.tintColor = Colours.greenColour
+        navigationItem.rightBarButtonItem?.tintColor = Colours.greenColour
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if todoStore.allTodos.count == 0 {
-            clearTodosButton.enabled = false
-        } else {
-            clearTodosButton.enabled = true
-        }
         return todoStore.allTodos.count
     }
     
@@ -64,7 +46,6 @@ class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCell
         if segue.identifier == "AddTodo" {
             let nav = segue.destinationViewController as! UINavigationController
             let addTodoViewController = nav.topViewController as! AddTodoViewController
-//            self.showViewController(addTodoViewController, sender: self)
             addTodoViewController.todoStore = todoStore
         }
     }
@@ -73,7 +54,6 @@ class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCell
         let newTodo = Todo(name: cell.nameField.text!)
         todoStore.changeTodo(newTodo, index: currentIndex!)
         isEditing = false
-        clearTodosButton.enabled = true
         tableView.reloadData()
     }
     
@@ -90,7 +70,7 @@ class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCell
         })
         
         
-        done.backgroundColor = UIColor(colorLiteralRed: 23.0/255, green: 190.0/255, blue: 52.0/255, alpha: 1)
+        done.backgroundColor = Colours.greenColour
         return [done]
     }
     
@@ -99,14 +79,16 @@ class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCell
         cell.updateLabels()
         
         let todo = todoStore.allTodos[indexPath.row]
-//        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(TodosViewController.tappedTextField(_:)))
-        
-//        cell.addGestureRecognizer(tapRecognizer)
+
         cell.userInteractionEnabled = true
         cell.nameField.text = todo.name
         cell.todoDelegate = self
         cell.nameField.userInteractionEnabled = false
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        todoStore.moveTodoAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row)
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -119,7 +101,6 @@ class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCell
             cell.currentTodo = todo
             currentIndex = indexPath.row
             isEditing = true
-            clearTodosButton.enabled = false
             cell.becomeFirstResponder()
         }
     }
