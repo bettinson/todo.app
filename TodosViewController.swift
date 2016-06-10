@@ -28,14 +28,21 @@ class TodosViewController : UITableViewController, UITextFieldDelegate, TodoCell
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         navigationItem.leftBarButtonItem = editButtonItem()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem?.tintColor = Colours.greenColour
-        navigationItem.rightBarButtonItem?.tintColor = Colours.greenColour
+        self.setNeedsStatusBarAppearanceUpdate()
+        navigationController?.navigationBar.translucent = true
+        navigationController?.navigationBar.barTintColor = Colours.greenColourHighlight
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+
+        navigationController?.view.backgroundColor = UIColor.clearColor()
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

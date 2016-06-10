@@ -19,8 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let navController = window!.rootViewController as! UINavigationController
         let todosViewController = navController.topViewController as! TodosViewController
+        navController.navigationBar.barStyle = UIBarStyle.Black
         todosViewController.todoStore = todoStore
-        
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         return true
     }
 

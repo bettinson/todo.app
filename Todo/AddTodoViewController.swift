@@ -28,8 +28,13 @@ class AddTodoViewController: UIViewController, UITextFieldDelegate, UINavigation
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem?.tintColor = Colours.greenColour
-        navigationItem.rightBarButtonItem?.tintColor = Colours.greenColour
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
+        self.setNeedsStatusBarAppearanceUpdate()
+        navigationController?.navigationBar.translucent = true
+        navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        navigationController?.navigationBar.barTintColor = Colours.greenColourHighlight
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         nameTextField.becomeFirstResponder()
     }
