@@ -1,4 +1,5 @@
 # Todo.app
+![Todo](http://i.imgur.com/cDT3fWo.png "Todo")
 
 This is my minimal todo app. You can add todos, clear them, edit them inline, and check them off.
 
